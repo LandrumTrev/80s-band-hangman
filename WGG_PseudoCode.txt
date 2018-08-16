@@ -59,32 +59,6 @@ let bandsArray = [
 ];
 
 
-let wordChoice = function() {
-	//get a random bandsArray[i].name array
-}
-
-
-
-// the blanks-and-letters word displayed on screen
-let displayWord = function() {
-	//check each <span>_</span>
-	for (wordChoice.length) {
-		// for each element in wordChoice array
-		// go inside <div id="wordBox"> and
-		// .innerHTML a <span id="'x'+[i]">_</span>
-
-		// and, if the letter in userGuess equals an element in wordChoice
-		if (getElementbyId("x"+[i]) === userGuess) {
-			// then replace the _ in <span> with userGuess value
-			getElementById("x"+[i]).textContent(userGuess);}
-		//
-		else {};
-
-		// and,
-
-	}
-		
-			
 
 
 
@@ -113,14 +87,6 @@ let displayWord = function() {
 
 
 
-
-
-
-
-
-
-
-let userGuess; //declare but leave empty
 
 
 

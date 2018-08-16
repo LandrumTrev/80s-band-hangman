@@ -1,0 +1,24 @@
+/* CSS for Word Guess Game aka Hangman  */
+
+main {
+    width: 100%;
+    position: absolute;
+}
+
+#theGame {
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+    top: 100px;
+    padding: 100px;
+    background-color: aliceblue;
+}
+
+#theDetails {
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+    top: 0px;
+    padding: 50px 100px 100px 100px;
+    background-color: aliceblue;
+}

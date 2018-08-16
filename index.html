@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman: The Word Guess Game</title>
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main>
+        <div id="theGame">
+            <h1>Hangman :
+                <span id="theTopic">80s Bands</span>
+            </h1>
+            <p>
+                <em>Press any key to start playing.</em>
+            </p>
+            <h3>Wins:
+                <span id="theWins">0</span>
+            </h3>
+            <h3 id="theWord">Current Word:
+                <span id="x0">_</span>
+                <span id="x1">_</span>
+                <span id="x2">_</span>
+                <span id="x3">_</span>
+                <span id="x4">_</span>
+            </h3>
+            <h3>Number of guesses remaining:
+                <span id="theRemaining">12</span>
+            </h3>
+            <h3>Your guesses so far:
+                <span id="g0">a, </span>
+                <span id="g1">b, </span>
+                <span id="g2">c, </span>
+                <span id="g3">d, </span>
+                <span id="g4">e, </span>
+            </h3>
+
+            <!-- SECTION BELOW FOR DEV ONLY, REMOVE FOR PRODUCTION -->
+            <div id="devsection">
+                <hr style="border: .5px solid lightcoral; margin-top: 30px;">
+                <h3 style="color: lightcoral;">Band name:
+                    <span id="theBand"></span>
+                </h3>
+                <h3 style="color: lightcoral;">User's letter guess:
+                    <span id="theGuess"></span>
+                </h3>
+            </div>
+
+        </div>
+
+        <div id="theDetails">
+
+            <div id="thePhoto">
+                <img src="assets/images/hangman.jpg" alt="hangman game">
+            </div>
+
+            <div id="theSong">
+                <h3>
+                    The Sun Always Shines On TV by a-ha
+                </h3>
+            </div>
+
+            <div id="theMP3">
+                <audio controls autoplay src="assets/music/none.mp3"></audio>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script src="assets/javascript/game-dev.js"></script>
+</body>
+
+</html>
