@@ -1,0 +1,11 @@
+# Pseudocode for Word Guess Game aka Hangman
+
+let allBands = [];
+
+let allBands = [
+  {name: ["a", "-", "h", "a"],
+   photo: "<img src:../images/aha.jpg>"},
+   song: "<audio src:../images/aha.jpg>"},
+   photo: "<img src:../music/aha.mp3>"},
+
+];
