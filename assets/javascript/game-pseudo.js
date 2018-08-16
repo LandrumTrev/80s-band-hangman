@@ -1,8 +1,9 @@
 // Pseudocode for Word Guess Game aka Hangman, 80s Style
 
 
-// ON PAGE LOAD--put all these variables in an OBJECT
+// ON PAGE LOAD--put all these variables in an OBJECT "hangMan"
 
+let hangMan = {
 
 let bandsArray = [
 
@@ -107,8 +108,11 @@ let lettersGuessed = ["D", "H", "K", "Q"];;
 let bandPhoto = "<img src:../images/thecars.jpg>";
 // get photo from the .photo of the current bandsArray[bandChoice] object
 
-let bandSong = "<img src:../music/thecars.mp3>";
-// get photo from the .photo of the current bandsArray[bandChoice] object
+let bandMP3 = "<img src:../music/thecars.mp3>";
+// get audio file from the .mp3 of the current bandsArray[bandChoice] object
+
+let bandSongName = "<img src:../music/thecars.mp3>";
+// text of song and band names from the .song of the current bandsArray[bandChoice] object
 
 let wins = 0;
 // start at 0 (or unset? as in the example)
@@ -118,16 +122,45 @@ let wins = 0;
 // START OBJECT FUNCTION PROPERTIES (METHODS?)
 
 
+// resets the game either at end of winning(), or if guessesRemaining < 1
+let reset = function () {
+
+    this.bandChoice(); //gets a new random object (array element index#) from bandsArray
+    this.wordChoice(); //sets a new word (letter array) from bandsArray[bandChoice] object
+    this.wordDisplay(); // resets the displayed word on screen as _ _ _ _ _
+    this.guessesRemaining() = 12; //resets remaining guesses to 12
+    this.lettersGuessed = []; //resets and empties the array of lettersGuessed
+    getElementById("theGuesses").innerHTML(lettersGuessed); //write empty array to HTML
+
+},
+
+// shows band photo and song name, plays song, increases wins +1, and runs reset()
+let winning = function () {
+
+    getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
+    getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
+    getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
+    wins = wins + 1; // increase the wins variable by 1
+    getElementById("theWins").contentText(wins); //write the new number of wins in HTML
+    this.reset(); //run the reset() function to reset for a new game
+
+},
+
+
+// the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
+let play = function () {
 
 
 
+}
 
 
 
-
-
-
+};
 // END OF OBJECT CONTAINING ALL VARIABLES
+
+
+
 
 // START GAME PLAY TRIGGER FUNCTION
 
