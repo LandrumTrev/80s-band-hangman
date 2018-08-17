@@ -91,6 +91,7 @@ let wordChoice = bandChoice.name;
 // let wordChoice = ["A", "-", "H", "A"];  // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
 // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
 // the Array used to compare right/wrong answers against for insertion into wordDisplay
+document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV; display in winning()
 
 // set a variable to display blanks equal in number to letters in the band's name
 // this String's value to be updated by the play() function
@@ -103,19 +104,19 @@ document.getElementById("theWord").textContent = (wordDisplay); // write the bla
 
 // set a variable for the band's photo to display on a win
 let bandPhoto = bandChoice.photo;
-document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; display in winning()
+// document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; display in winning()
 // let bandPhoto = "<img src='assets/images/aha.jpg'>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
 // get photo from the .photo of the current bandsArray[bandChoice] object
 
 // set a variable for the band's song to play on a win
 let bandMP3 = bandChoice.mp3;
-document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
+// document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
 // let bandMP3 = "<audio controls autoplay src='assets/music/aha.mp3'></audio>";
 // get audio file from the .mp3 of the current bandsArray[bandChoice] object
 
 // set a variable for the band's name and song title to display on a win
 let bandSongName = bandChoice.song;
-document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
+// document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
 // let bandSongName = "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>";
 // get text of song and band name from the .song of the current bandsArray[bandChoice] object
 
@@ -127,8 +128,8 @@ document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; d
 // initialize a Number variable for the number of remaining guesses the user has
 let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
 guessesRemaining = 12; // initial value given to guessesRemaining on page load
-document.getElementById("theRemaining").textContent = (guessesRemaining);
 // write the value of guessesRemaining to the #theRemaining span on page
+document.getElementById("theRemaining").textContent = (guessesRemaining); // write to page
 
 // initialize a String variable to be assigned to each key press the user makes
 let userGuess; // initialize, set value in play() by DOCUMENT.ONKEYUP() {event.key.toUpperCase();}
@@ -143,9 +144,9 @@ document.getElementById("theGuesses").textContent = (lettersGuessed); // write b
 // an Array, empty on page load and at reset()
 
 // initialize a Number variable as a incremented counter to keep track of user wins
-let wins; // initialize, value incremented in the winning() function
-// wins = 327;
-document.getElementById("theWins").textContent = (wins); // DISPLAY FOR DEV ONLY
+let wins = 0; // initialize, value incremented in the winning() function
+// wins = 327; // PLACEHOLDER VALUE FOR DEV ONLY, REMOVE FOR PRODUCTION
+document.getElementById("theWins").textContent = (wins); // write the value of wins to the page
 
 // END OF GAME PLAY VARIABLES
 
@@ -180,7 +181,7 @@ let reset = function () {
 
     // empties the array of lettersGuessed
     lettersGuessed = [];
-    lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
+    // lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
     document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 
 };
@@ -188,17 +189,17 @@ let reset = function () {
 // shows band photo and song name, plays song, increases wins +1, and runs reset()
 let winning = function () {
 
+    // on a win, display the band photo, play the song, and display the band name + song title
+    document.getElementById("thePhoto").innerHTML = (bandPhoto);
+    document.getElementById("theMP3").innerHTML = (bandMP3);
+    document.getElementById("theSongName").innerHTML = (bandSongName);
 
+    // increment the wins variable by 1
+    wins = wins + 1;
+    document.getElementById("theWins").textContent = (wins); // write new value of wins to the page
 
-
-
-    // getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
-    // getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
-    // getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
-    // wins = wins + 1; // increase the wins variable by 1
-    // getElementById("theWins").contentText(wins); //write the new number of wins in HTML
-    // this.reset(); //run the reset() function to reset for a new game
-
+    //run the reset() function to reset for a new game
+    reset();
 };
 
 
