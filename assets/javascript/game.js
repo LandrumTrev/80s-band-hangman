@@ -80,12 +80,12 @@
     ];
 
     let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
-    // let bandChoice = bandsArray[0];
+    // let bandChoice = bandsArray[0]; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
     // choose a random element from bandsArray[], which is an object with name, photo, mp3, song
     // use to keep track of name, photo, mp3, and song name of current word
 
     let wordChoice = bandChoice.name;
-    // let wordChoice = ["A", "-", "H", "A"];
+    // let wordChoice = ["A", "-", "H", "A"];  // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
     // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
     // the Array used to compare right/wrong answers against for insertion into wordDisplay
 
@@ -102,8 +102,9 @@
     document.getElementById("theRemaining").textContent = (guessesRemaining);
     // write the value of guessesRemaining to the #theRemaining span on page
 
-    // let userGuess = "a";
-    // // initialize but leave empty.
+    let userGuess; // initialize, set value in play() by DOCUMENT.ONKEYUP() {event.key.toUpperCase();}
+    userGuess = "a"; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
+    document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DEV ONLY
     // // used to track the value of each key pressed by user as a guess
     // // value is set in the DOCUMENT.KEYUP() function as event.key.toUpperCase()
 
