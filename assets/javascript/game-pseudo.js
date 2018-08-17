@@ -165,13 +165,27 @@ let hangMan = {
                             // if userGuess equals any letter in wordChoice array...
                         }) {
                         wordDisplay[i].splice(userGuess);
-                        // .splice() replace that "_" with userGuess letter
+                        // ...then .splice() replace that "_" with userGuess letter
                         getElementById("theWins").contentText(wordDisplay);
                         // write updated wordDisplay to page
                         if (
-                            for (wordDisplay.length)) { //check all elements of wordDisplay array
-                                wordDisplay[i] !== "_"; //and if there are no "_" chars, then
-                            }) //
+                            for (wordDisplay.length LOOP) { //check all elements of wordDisplay array
+                                //and if there are no "_" chars left, then user has won the game
+                                wordDisplay[i !== "_";
+                            }) { 
+                                // so run the winning function that plays song, photo, song title, and reset function
+                                winning();
+                        }
+                    } else {
+                        lettersGuessed.push(userGuess); // add the userGuess to the array of letters already guessed
+                        write letters of lettersGuessed to #theGuesses div as individual spans;
+                        guessesRemaining = guessesRemaining - 1; // decrement the amount of guessesRemaining
+                        if (guessesRemaining < 1) {  // and if the guessesRemaining hits 0,
+                            reset(); // then run reset to start another game
+                        }
+                        else { 
+                            // otherwise, if guessesRemaining is NOT 0, then do nothing
+                        } 
                     }
                 }
 
@@ -180,7 +194,9 @@ let hangMan = {
 
 
 
+
 };
+
 // END OF OBJECT CONTAINING ALL VARIABLES
 
 
