@@ -1,9 +1,9 @@
-// Pseudocode for Word Guess Game aka Hangman, 80s Style
+// JavaScript for Word Guess Game aka Hangman: 80s Bands
+// by Rich Trevillian August 17 2018
 
+// VARIABLES TO INITIALIZE ON PAGE LOAD
 
-// ON PAGE LOAD--put all these variables in an OBJECT "hangMan"
-
-// let hangMan = {
+// START RANDOM GAME OBJECT VARIABLES
 
 let bandsArray = [
 
@@ -89,7 +89,8 @@ let wordChoice = bandChoice.name;
 // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
 // the Array used to compare right/wrong answers against for insertion into wordDisplay
 
-let wordDisplay = wordChoice; // copy wordChoice array (band name letters) to wordDisplay array
+let wordDisplay = wordChoice.slice(); 
+// use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
 wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
 wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
 document.getElementById("theWord").textContent = (wordDisplay); // write wordDisplay to page SPAN
@@ -111,6 +112,10 @@ document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; d
 // let bandSongName = "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>";
 // text of song and band name from the .song of the current bandsArray[bandChoice] object
 
+// END OF RANDOM GAME OBJECT VARIABLES
+
+
+// START GAME PLAY VARIABLES
 
 let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
 // used to keep track of how many guesses the user has left
@@ -135,34 +140,40 @@ let wins; // initialize, value incremented in the winning() function
 document.getElementById("theWins").textContent = (wins); // DISPLAY FOR DEV ONLY
 // keeps track of how many rounds of hangman the user has won
 
+// END OF GAME PLAY VARIABLES
 
-// END OF OBJECT PRIMITIVE, OBJECT, AND ARRAY VARIABLES
-// START OBJECT FUNCTION PROPERTIES (METHODS?)
+
+// START FUNCTION DEFINITIONS
 
 
 // resets the game either at end of winning(), or if guessesRemaining < 1
-// let reset = function () {
+let reset = function () {
 
-//     this.bandChoice(); //gets a new random object (array element index#) from bandsArray
-//     this.wordChoice(); //sets a new word (letter array) from bandsArray[bandChoice] object
-//     this.wordDisplay(); // resets the displayed word on screen as _ _ _ _ _
-//     this.guessesRemaining() = 12; //resets remaining guesses to 12
-//     this.lettersGuessed = []; //resets and empties the array of lettersGuessed
-//     getElementById("theGuesses").innerHTML(lettersGuessed); //write empty array to HTML
+    //get a new random object from bandsArray
+    // bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
+    
+    //
+    // wordChoice = bandChoice.name;
 
-// };,
+    // this.wordChoice(); //sets a new word (letter array) from bandsArray[bandChoice] object
+    // this.wordDisplay(); // resets the displayed word on screen as _ _ _ _ _
+    // this.guessesRemaining() = 12; //resets remaining guesses to 12
+    // this.lettersGuessed = []; //resets and empties the array of lettersGuessed
+    // getElementById("theGuesses").innerHTML(lettersGuessed); //write empty array to HTML
+    return;
+};
 
 // shows band photo and song name, plays song, increases wins +1, and runs reset()
-let winning = function () {
+// let winning = function () {
 
-    getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
-    getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
-    getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
-    wins = wins + 1; // increase the wins variable by 1
-    getElementById("theWins").contentText(wins); //write the new number of wins in HTML
-    this.reset(); //run the reset() function to reset for a new game
+//     getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
+//     getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
+//     getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
+//     wins = wins + 1; // increase the wins variable by 1
+//     getElementById("theWins").contentText(wins); //write the new number of wins in HTML
+//     this.reset(); //run the reset() function to reset for a new game
 
-};
+// };
 
 
 // the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
