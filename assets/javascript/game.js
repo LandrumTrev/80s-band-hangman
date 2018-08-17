@@ -93,14 +93,23 @@ let wordChoice = bandChoice.name;
 // the Array used to compare right/wrong answers against for insertion into wordDisplay
 document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV; display in winning()
 
+
+//
 // set a variable to display blanks equal in number to letters in the band's name
 // this String's value to be updated by the play() function
-let wordDisplay = wordChoice.slice();
-// use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
+
+// use .slice to make wordArray, an independent Array copy of values in wordChoice
+let wordArray = wordChoice.slice();
+
+// then use .slice to make wordDisplay, an independent copy of wordArray that will be turned into a String
+let wordDisplay = wordArray.slice();
+
 wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
 wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
 document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
 // let wordDisplay = ["_ _ _ _ "];
+//
+
 
 // set a variable for the band's photo to display on a win
 // let bandPhoto = bandChoice.photo;
@@ -218,9 +227,32 @@ let play = function () {
             // but if userGuess letter pressed is not already in the lettersGuessed Array...
         } else {
 
-            for (let i = 0; 0 < wordChoice.length; i++) {
+            // loop through all elements in the secret wordChoice Array,
+            for (let h = 0; 0 < wordChoice.length; h++) {
 
-                if (userGuess === wordChoice[i]) {
+                // and if the user's key press matches any element in the wordChoice Array,
+                if (wordChoice[h] === userGuess) {
+
+                    // then .splice in 1 element (userGuess) into wordArray at position [h]
+                    wordArray.splice([h], 1, userGuess);
+
+                    // and then copy wordArray values into independent wordDisplay Array
+                    wordDisplay = wordArray.slice();
+                    // and then convert the wordDisplay Array into a space-separated String
+                    wordDisplay = wordDisplay.join(" ");
+                    // and then write updated wordDisplay String to the page
+                    document.getElementById("theWord").textContent = (wordDisplay);
+
+                    // and loop through the wordArray representing current state of guesses
+                    for (let g = 0; 0 < wordArray.length; g++) {
+
+                        // and if there are no any underscore "_" characters left...
+                        if ( wordArray[g] !== "_";) {
+
+                        // ...then run winning() to play song, show photo + song title, and reset()
+                        winning();
+                    }
+
 
                 }
 
@@ -232,26 +264,7 @@ let play = function () {
     };
 
 
-    // } else {
-    //     if (
-    //         for (wordChoice.length LOOP) {
-    //             // LOOP check all elements of the secret word, and
-    //             userGuess === wordChoice[i];
-    //             // if userGuess equals any letter in wordChoice array...
-    //         }) {
-    //         wordDisplay[i].splice(userGuess);
-    //         // ...then .splice() replace that "_" with userGuess letter
-    //         getElementById("theWins").contentText(wordDisplay);
-    //         // write updated wordDisplay to page
-    //         if (
-    //             for (wordDisplay.length LOOP) {
-    //                 // check all elements of wordDisplay array
-    //                 // and if there are no "_" chars left, then user has won the game
-    //                 // wordDisplay[i] !== "_";
-    //             }) {
-    //             // so run the winning function that plays song, photo, song title, and reset function
-    //             winning();
-    //         }
+
     //     } else {
     //         lettersGuessed.push(userGuess); // add the userGuess to the array of letters already guessed
     //         write letters of lettersGuessed to# theGuesses div as individual spans;
