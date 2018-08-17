@@ -22,3 +22,7 @@ main {
     padding: 50px 100px 100px 100px;
     background-color: aliceblue;
 }
+
+strong {
+    color: red;
+}

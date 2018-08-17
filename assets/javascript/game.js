@@ -11,70 +11,70 @@ let bandsArray = [
         name: ["A", "-", "H", "A"],
         photo: "<img src='assets/images/aha.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/aha.mp3'></audio>",
-        song: "The Sun Always Shines On TV by a-ha"
+        song: "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>"
     },
 
     {
         name: ["T", "H", "E", " ", "P", "O", "L", "I", "C", "E"],
         photo: "<img src='assets/images/thepolice.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/thepolice.mp3'></audio>",
-        song: "Spirits In The Material World by The Police"
+        song: "<em>'Spirits In The Material World'</em> by <strong>The Police</strong>"
     },
 
     {
         name: ["R", "U", "S", "H"],
         photo: "<img src='assets/images/rush.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/rush.mp3'></audio>",
-        song: "Red Barchetta by Rush"
+        song: "<em>'Red Barchetta'</em> by <strong>Rush</strong>"
     },
 
     {
         name: ["S", "T", "E", "V", "I", "E", " ", "N", "I", "C", "K", "S"],
         photo: "<img src='assets/images/stevienicks.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/stevienicks.mp3'></audio>",
-        song: "Blue Lamp by Stevie Nicks"
+        song: "<em>'Blue Lamp'</em> by <strong>Stevie Nicks</strong>"
     },
 
     {
         name: ["B", "O", "B", " ", "M", "A", "R", "L", "E", "Y"],
         photo: "<img src='assets/images/bobmarley.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/bobmarley.mp3'></audio>",
-        song: "Small Axe by Bob Marley and the Wailers"
+        song: "<em>'Small Axe'</em> by <strong>Bob Marley and the Wailers</strong>"
     },
 
     {
         name: ["T", "H", "E", " ", "C", "L", "A", "S", "H"],
         photo: "<img src='assets/images/theclash.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/theclash.mp3'></audio>",
-        song: "Lost In The Supermarket by The Clash"
+        song: "<em>'Lost In The Supermarket'</em> by <strong>The Clash</strong>"
     },
 
     {
         name: ["M", "A", "R", "V", "I", "N", " ", "G", "A", "Y", "E"],
         photo: "<img src='assets/images/marvingaye.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/marvingaye.mp3'></audio>",
-        song: "Sexual Healing by Marvin Gaye"
+        song: "<em>'Sexual Healing'</em> by <strong>Marvin Gaye</strong>"
     },
 
     {
         name: ["B", "I", "L", "L", "Y", " ", "I", "D", "O", "L"],
         photo: "<img src='assets/images/billyidol.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/billyidol.mp3'></audio>",
-        song: "Eyes Without A Face by Billy Idol"
+        song: "<em>'Eyes Without A Face'</em> by <strong>Billy Idol</strong>"
     },
 
     {
         name: ["D", "U", "R", "A", "N", " ", "D", "U", "R", "A", "N"],
         photo: "<img src='assets/images/duranduran.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/duranduran.mp3'></audio>",
-        song: "The Reflex by Duran Duran"
+        song: "<em>'The Reflex'</em> by <strong>Duran Duran</strong>"
     },
 
     {
         name: ["T", "H", "E", " ", "C", "A", "R", "S"],
         photo: "<img src='assets/images/thecars.jpg'>",
         mp3: "<audio controls autoplay src='assets/music/thecars.mp3'></audio>",
-        song: "Drive by The Cars"
+        song: "<em>'Drive'</em> by <strong>The Cars</strong>"
     },
 
 ];
@@ -97,17 +97,19 @@ document.getElementById("theWord").textContent = (wordDisplay); // write wordDis
 // used to display the current status of the guessed word on the page
 
 let bandPhoto = bandChoice.photo;
-document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; actual display in winning()
-// let bandPhoto = "<img src:../images/thecars.jpg>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
-// // get photo from the .photo of the current bandsArray[bandChoice] object
+document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; display in winning()
+// let bandPhoto = "<img src='assets/images/aha.jpg'>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
+// get photo from the .photo of the current bandsArray[bandChoice] object
 
 let bandMP3 = bandChoice.mp3;
-document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; actual display in winning()
-// let bandMP3 = "<img src:../music/thecars.mp3>";
-// // get audio file from the .mp3 of the current bandsArray[bandChoice] object
+document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
+// let bandMP3 = "<audio controls autoplay src='assets/music/aha.mp3'></audio>";
+// get audio file from the .mp3 of the current bandsArray[bandChoice] object
 
-// let bandSongName = "<img src:../music/thecars.mp3>";
-// // text of song and band names from the .song of the current bandsArray[bandChoice] object
+let bandSongName = bandChoice.song;
+document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
+// let bandSongName = "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>";
+// text of song and band name from the .song of the current bandsArray[bandChoice] object
 
 
 let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
