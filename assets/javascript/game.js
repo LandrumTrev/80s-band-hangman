@@ -130,8 +130,10 @@ document.getElementById("theGuesses").textContent = (lettersGuessed); // DISPLAY
 // an Array, empty on page load and at reset()
 // used to keep track of each new (and not previously pressed) key value in userGuess
 
-// let wins = 0;
-// // start at 0 (or unset? as in the example)
+let wins; // initialize, value incremented in the winning() function
+// wins = 327;
+document.getElementById("theWins").textContent = (wins); // DISPLAY FOR DEV ONLY
+// keeps track of how many rounds of hangman the user has won
 
 
 // END OF OBJECT PRIMITIVE, OBJECT, AND ARRAY VARIABLES
