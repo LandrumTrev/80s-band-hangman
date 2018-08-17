@@ -5,6 +5,7 @@
 
 // START RANDOM GAME OBJECT VARIABLES
 
+// create an array to hold individual band info objects
 let bandsArray = [
 
     {
@@ -79,66 +80,72 @@ let bandsArray = [
 
 ];
 
+// randomly select a band object from bandsArray
 let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 // let bandChoice = bandsArray[0]; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
 // choose a random element from bandsArray[], which is an object with name, photo, mp3, song
 // use to keep track of name, photo, mp3, and song name of current word
 
+// set a variable for the band's name to be guessed
 let wordChoice = bandChoice.name;
 // let wordChoice = ["A", "-", "H", "A"];  // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
 // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
 // the Array used to compare right/wrong answers against for insertion into wordDisplay
 
+// set a variable to display blanks equal in number to letters in the band's name
+// this String's value to be updated by the play() function
 let wordDisplay = wordChoice.slice();
 // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
 wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
 wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
 document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
 // let wordDisplay = ["_ _ _ _ "];
-// used to display the current status of the guessed word on the page
 
+// set a variable for the band's photo to display on a win
 let bandPhoto = bandChoice.photo;
 document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; display in winning()
 // let bandPhoto = "<img src='assets/images/aha.jpg'>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
 // get photo from the .photo of the current bandsArray[bandChoice] object
 
+// set a variable for the band's song to play on a win
 let bandMP3 = bandChoice.mp3;
 document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
 // let bandMP3 = "<audio controls autoplay src='assets/music/aha.mp3'></audio>";
 // get audio file from the .mp3 of the current bandsArray[bandChoice] object
 
+// set a variable for the band's name and song title to display on a win
 let bandSongName = bandChoice.song;
 document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
 // let bandSongName = "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>";
-// text of song and band name from the .song of the current bandsArray[bandChoice] object
+// get text of song and band name from the .song of the current bandsArray[bandChoice] object
 
 // END OF RANDOM GAME OBJECT VARIABLES
 
 
 // START GAME PLAY VARIABLES
 
+// initialize a Number variable for the number of remaining guesses the user has
 let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
-// used to keep track of how many guesses the user has left
 guessesRemaining = 12; // initial value given to guessesRemaining on page load
 document.getElementById("theRemaining").textContent = (guessesRemaining);
 // write the value of guessesRemaining to the #theRemaining span on page
 
+// initialize a String variable to be assigned to each key press the user makes
 let userGuess; // initialize, set value in play() by DOCUMENT.ONKEYUP() {event.key.toUpperCase();}
 userGuess = "a"; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
 document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DEV ONLY
-// used to track the value of each key pressed by user as a guess
 // value is set in the DOCUMENT.KEYUP() function as event.key.toUpperCase()
 
+// initialize an Array variable to hold a sequence of String values from userGuess
 let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
 // lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
 document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 // an Array, empty on page load and at reset()
-// used to keep track of each new (and not previously pressed) key value in userGuess
 
+// initialize a Number variable as a incremented counter to keep track of user wins
 let wins; // initialize, value incremented in the winning() function
 // wins = 327;
 document.getElementById("theWins").textContent = (wins); // DISPLAY FOR DEV ONLY
-// keeps track of how many rounds of hangman the user has won
 
 // END OF GAME PLAY VARIABLES
 
@@ -152,18 +159,18 @@ let reset = function () {
     // get a new random object from bandsArray
     bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
-    // get a new wordChoice from the .name of randomly chosen bandChoice object
+    // get a new wordChoice Array from the .name of randomly chosen bandChoice object
     wordChoice = bandChoice.name;
 
-    // make wordDisplay a string of blanks "_ _ _" with blanks equal to letters in wordChoice
-    wordDisplay = wordChoice.slice();
+    // make wordDisplay a String of blanks "_ _ _" with blanks equal to letters in wordChoice Array
     // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
+    wordDisplay = wordChoice.slice();
     wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
     wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
     document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
 
     // reassign the photo, mp3 and song name variables from the new random object
-    // these items are hidden until the winning() function reveals them
+    // these items are hidden until the winning() function writes them to the page
     bandPhoto = bandChoice.photo;
     bandMP3 = bandChoice.mp3;
     bandSongName = bandChoice.song;
@@ -179,16 +186,20 @@ let reset = function () {
 };
 
 // shows band photo and song name, plays song, increases wins +1, and runs reset()
-// let winning = function () {
+let winning = function () {
 
-//     getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
-//     getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
-//     getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
-//     wins = wins + 1; // increase the wins variable by 1
-//     getElementById("theWins").contentText(wins); //write the new number of wins in HTML
-//     this.reset(); //run the reset() function to reset for a new game
 
-// };
+
+
+
+    // getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
+    // getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
+    // getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
+    // wins = wins + 1; // increase the wins variable by 1
+    // getElementById("theWins").contentText(wins); //write the new number of wins in HTML
+    // this.reset(); //run the reset() function to reset for a new game
+
+};
 
 
 // the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
