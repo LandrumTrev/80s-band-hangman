@@ -3,7 +3,7 @@
 
 // ON PAGE LOAD--put all these variables in an OBJECT "hangMan"
 
-let hangMan = {
+// let hangMan = {
 
     let bandsArray = [
 
@@ -77,11 +77,11 @@ let hangMan = {
             song: "Drive by The Cars"
         },
 
-    ],
+    ];
 
-    // let bandChoice = 9;
-    // // choose a random array element from bandsArray[i]
-    // // use to keep track of name, photo, mp3, and song name of current word
+    let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
+    // choose a random array element from bandsArray[i]
+    // use to keep track of name, photo, mp3, and song name of current word
 
     // let wordChoice = ["T", "H", "E", " ", "C", "A", "R", "S"];
     // // an Array of individual CAPITAL letters, 
@@ -135,16 +135,16 @@ let hangMan = {
     // };,
 
     // shows band photo and song name, plays song, increases wins +1, and runs reset()
-    // let winning = function () {
+    let winning = function () {
 
-    //     getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
-    //     getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
-    //     getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
-    //     wins = wins + 1; // increase the wins variable by 1
-    //     getElementById("theWins").contentText(wins); //write the new number of wins in HTML
-    //     this.reset(); //run the reset() function to reset for a new game
+        getElementById("thePhoto").innerHTML(bandPhoto); //change image to guessed band photo
+        getElementById("theMP3").innerHTML(bandMP3); //change audio to guessed band song
+        getElementById("theSongName").innerHTML(bandSongName); //change audio to band song
+        wins = wins + 1; // increase the wins variable by 1
+        getElementById("theWins").contentText(wins); //write the new number of wins in HTML
+        this.reset(); //run the reset() function to reset for a new game
 
-    // };,
+    };
 
 
     // the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
@@ -189,7 +189,7 @@ let hangMan = {
     //         }
     //     }
     // }
-};
+// };
 
 // END OF OBJECT CONTAINING ALL VARIABLES
 
