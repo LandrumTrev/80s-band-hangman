@@ -9,70 +9,70 @@ let bandsArray = [
 
     {
         name: ["A", "-", "H", "A"],
-        photo: "<img src:../images/aha.jpg>",
+        photo: "<img src='assets/images/aha.jpg'>",
         mp3: "<img src:../music/aha.mp3>",
         song: "The Sun Always Shines On TV by a-ha"
     },
 
     {
         name: ["T", "H", "E", " ", "P", "O", "L", "I", "C", "E"],
-        photo: "<img src:../images/thepolice.jpg>",
+        photo: "<img src='assets/images/thepolice.jpg'>",
         mp3: "<img src:../music/thepolice.mp3>",
         song: "Spirits In The Material World by The Police"
     },
 
     {
         name: ["R", "U", "S", "H"],
-        photo: "<img src:../images/rush.jpg>",
+        photo: "<img src='assets/images/rush.jpg'>",
         mp3: "<img src:../music/rush.mp3>",
         song: "Red Barchetta by Rush"
     },
 
     {
         name: ["S", "T", "E", "V", "I", "E", " ", "N", "I", "C", "K", "S"],
-        photo: "<img src:../images/stevienicks.jpg>",
+        photo: "<img src='assets/images/stevienicks.jpg'>",
         mp3: "<img src:../music/stevienicks.mp3>",
         song: "Blue Lamp by Stevie Nicks"
     },
 
     {
         name: ["B", "O", "B", " ", "M", "A", "R", "L", "E", "Y"],
-        photo: "<img src:../images/bobmarley.jpg>",
+        photo: "<img src='assets/images/bobmarley.jpg'>",
         mp3: "<img src:../music/bobmarley.mp3>",
         song: "Small Axe by Bob Marley and the Wailers"
     },
 
     {
         name: ["T", "H", "E", " ", "C", "L", "A", "S", "H"],
-        photo: "<img src:../images/theclash.jpg>",
+        photo: "<img src='assets/images/theclash.jpg'>",
         mp3: "<img src:../music/theclash.mp3>",
         song: "Lost In The Supermarket by The Clash"
     },
 
     {
         name: ["M", "A", "R", "V", "I", "N", " ", "G", "A", "Y", "E"],
-        photo: "<img src:../images/marvingaye.jpg>",
+        photo: "<img src='assets/images/marvingaye.jpg'>",
         mp3: "<img src:../music/marvingaye.mp3>",
         song: "Sexual Healing by Marvin Gaye"
     },
 
     {
         name: ["B", "I", "L", "L", "Y", " ", "I", "D", "O", "L"],
-        photo: "<img src:../images/billyidol.jpg>",
+        photo: "<img src='assets/images/billyidol.jpg'>",
         mp3: "<img src:../music/billyidol.mp3>",
         song: "Eyes Without A Face by Billy Idol"
     },
 
     {
         name: ["D", "U", "R", "A", "N", " ", "D", "U", "R", "A", "N"],
-        photo: "<img src:../images/duranduran.jpg>",
+        photo: "<img src='assets/images/duranduran.jpg'>",
         mp3: "<img src:../music/duranduran.mp3>",
         song: "The Reflex by Duran Duran"
     },
 
     {
         name: ["T", "H", "E", " ", "C", "A", "R", "S"],
-        photo: "<img src:../images/thecars.jpg>",
+        photo: "<img src='assets/images/thecars.jpg'>",
         mp3: "<img src:../music/thecars.mp3>",
         song: "Drive by The Cars"
     },
@@ -96,6 +96,18 @@ document.getElementById("theWord").textContent = (wordDisplay); // write wordDis
 // let wordDisplay = ["_ _ _ _ "];
 // used to display the current status of the guessed word on the page
 
+let bandPhoto = bandChoice.photo;
+document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; actual display in winning()
+// let bandPhoto = "<img src:../images/thecars.jpg>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
+// // get photo from the .photo of the current bandsArray[bandChoice] object
+
+// let bandMP3 = "<img src:../music/thecars.mp3>";
+// // get audio file from the .mp3 of the current bandsArray[bandChoice] object
+
+// let bandSongName = "<img src:../music/thecars.mp3>";
+// // text of song and band names from the .song of the current bandsArray[bandChoice] object
+
+
 let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
 // used to keep track of how many guesses the user has left
 guessesRemaining = 12; // initial value given to guessesRemaining on page load
@@ -109,19 +121,10 @@ document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DE
 // value is set in the DOCUMENT.KEYUP() function as event.key.toUpperCase()
 
 let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
-lettersGuessed = [" C", " H", " K", " Q"];
+lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
 document.getElementById("theGuesses").textContent = (lettersGuessed); // DISPLAY FOR DEV ONLY
 // an Array, empty on page load and at reset()
-// used to keep track of each new (not previously pressed) key value in userGuess
-
-// let bandPhoto = "<img src:../images/thecars.jpg>";
-// // get photo from the .photo of the current bandsArray[bandChoice] object
-
-// let bandMP3 = "<img src:../music/thecars.mp3>";
-// // get audio file from the .mp3 of the current bandsArray[bandChoice] object
-
-// let bandSongName = "<img src:../music/thecars.mp3>";
-// // text of song and band names from the .song of the current bandsArray[bandChoice] object
+// used to keep track of each new (and not previously pressed) key value in userGuess
 
 // let wins = 0;
 // // start at 0 (or unset? as in the example)
