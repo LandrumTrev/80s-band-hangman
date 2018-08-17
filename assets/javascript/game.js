@@ -80,18 +80,21 @@
     ];
 
     let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
-    // choose a random array element from bandsArray[i]
+    // let bandChoice = bandsArray[0];
+    // choose a random element from bandsArray[], which is an object with name, photo, mp3, song
     // use to keep track of name, photo, mp3, and song name of current word
 
-    // let wordChoice = ["T", "H", "E", " ", "C", "A", "R", "S"];
-    // // an Array of individual CAPITAL letters, 
-    // // from the .name of the current bandsArray[bandChoice] object
-    // // an Array used to compare right/wrong answers against for insertion into wordDisplay
+    let wordChoice = bandChoice.name;
+    // let wordChoice = ["A", "-", "H", "A"];
+    // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
+    // the Array used to compare right/wrong answers against for insertion into wordDisplay
 
-    // let wordDisplay = ["_", "_", "_", "_", "_", "_", "_", "_"];
-    // // an Array; for each letter element in the wordChoice array above,
-    // // create an element in this array that is "_"
-    // // used to display the current status of the guessed word in HTML
+    let wordDisplay = wordChoice; // copy wordChoice array (band name letters) to wordDisplay array
+    wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
+    wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
+    document.getElementById("theWord").textContent = (wordDisplay); // write wordDisplay to page SPAN
+    // let wordDisplay = ["_ _ _ _ "];
+    // used to display the current status of the guessed word in HTML
 
     // let guessesRemaining = 12;
     // // used to keep track of how many guesses the user has left
