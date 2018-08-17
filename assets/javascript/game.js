@@ -103,21 +103,21 @@ document.getElementById("theWord").textContent = (wordDisplay); // write the bla
 // let wordDisplay = ["_ _ _ _ "];
 
 // set a variable for the band's photo to display on a win
-let bandPhoto = bandChoice.photo;
-// document.getElementById("thePhoto").innerHTML = (bandPhoto); // FOR DEV; display in winning()
-// let bandPhoto = "<img src='assets/images/aha.jpg'>"; // PLACEHOLDER FOR DEV, REMOVE FOR PRODUCTION
+// let bandPhoto = bandChoice.photo;
+let bandPhoto = "<img src='assets/images/hangman.jpg'>"; // initial placeholder image for game
+document.getElementById("thePhoto").innerHTML = (bandPhoto); // display the initial placeholder image
 // get photo from the .photo of the current bandsArray[bandChoice] object
 
 // set a variable for the band's song to play on a win
 let bandMP3 = bandChoice.mp3;
-// document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
 // let bandMP3 = "<audio controls autoplay src='assets/music/aha.mp3'></audio>";
+// document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
 // get audio file from the .mp3 of the current bandsArray[bandChoice] object
 
 // set a variable for the band's name and song title to display on a win
-let bandSongName = bandChoice.song;
-// document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
-// let bandSongName = "<em>'The Sun Always Shines On TV'</em> by <strong>a-ha</strong>";
+// let bandSongName = bandChoice.song;
+let bandSongName = "<strong><em>Guess the name of the '80s band I'm thinking of, and you'll get a blast from the past!</em></strong>";
+document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
 // get text of song and band name from the .song of the current bandsArray[bandChoice] object
 
 // END OF RANDOM GAME OBJECT VARIABLES
@@ -139,7 +139,7 @@ document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DE
 
 // initialize an Array variable to hold a sequence of String values from userGuess
 let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
-// lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
+lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
 document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 // an Array, empty on page load and at reset()
 
@@ -151,7 +151,7 @@ document.getElementById("theWins").textContent = (wins); // write the value of w
 // END OF GAME PLAY VARIABLES
 
 
-// START FUNCTION DEFINITIONS
+// START FUNCTION EXPRESSIONS: reset, winning, play
 
 
 // resets the game to a new random band either at end of winning(), or if guessesRemaining < 1
@@ -204,57 +204,84 @@ let winning = function () {
 
 
 // the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
-// let play = function () {
+let play = function () {
 
-//     if (
-//         for (lettersGuessed.length LOOP) {
-//             // LOOP check all elements of letters already guessed, and
-//             userGuess === lettersGuessed[i];
-//             // if userGuess equals any letter in lettersGuessed array...
-//         }) {
-//         // then do nothing--leave these curly brackets empty
-//     } else {
-//         if (
-//             for (wordChoice.length LOOP) {
-//                 // LOOP check all elements of the secret word, and
-//                 userGuess === wordChoice[i];
-//                 // if userGuess equals any letter in wordChoice array...
-//             }) {
-//             wordDisplay[i].splice(userGuess);
-//             // ...then .splice() replace that "_" with userGuess letter
-//             getElementById("theWins").contentText(wordDisplay);
-//             // write updated wordDisplay to page
-//             if (
-//                 for (wordDisplay.length LOOP) {
-//                     // check all elements of wordDisplay array
-//                     // and if there are no "_" chars left, then user has won the game
-//                     // wordDisplay[i] !== "_";
-//                 }) {
-//                 // so run the winning function that plays song, photo, song title, and reset function
-//                 winning();
-//             }
-//         } else {
-//             lettersGuessed.push(userGuess); // add the userGuess to the array of letters already guessed
-//             write letters of lettersGuessed to# theGuesses div as individual spans;
-//             guessesRemaining = guessesRemaining - 1; // decrement the amount of guessesRemaining
-//             if (guessesRemaining < 1) { // and if the guessesRemaining hits 0,
-//                 reset(); // then run reset to start another game
-//             } else {
-//                 // otherwise, if guessesRemaining is NOT 0, then do nothing
-//             }
-//         }
-//     }
-// }
-// };
+    // create a loop that runs the length of lettersGuessed
+    for (let i = 0; 0 < lettersGuessed.length; i++) {
 
-// END OF OBJECT CONTAINING ALL VARIABLES
+        // if userGuess equals any letter in lettersGuessed array...
+        if (userGuess === lettersGuessed[i]) {
 
+            // then do nothing--end the function with return
+            return;
+
+            // but if userGuess letter pressed is not already in the lettersGuessed Array...
+        } else {
+
+            for (let i = 0; 0 < wordChoice.length; i++) {
+
+                if (userGuess === wordChoice[i]) {
+
+                }
+
+
+
+
+            };
+        }
+    };
+
+
+    // } else {
+    //     if (
+    //         for (wordChoice.length LOOP) {
+    //             // LOOP check all elements of the secret word, and
+    //             userGuess === wordChoice[i];
+    //             // if userGuess equals any letter in wordChoice array...
+    //         }) {
+    //         wordDisplay[i].splice(userGuess);
+    //         // ...then .splice() replace that "_" with userGuess letter
+    //         getElementById("theWins").contentText(wordDisplay);
+    //         // write updated wordDisplay to page
+    //         if (
+    //             for (wordDisplay.length LOOP) {
+    //                 // check all elements of wordDisplay array
+    //                 // and if there are no "_" chars left, then user has won the game
+    //                 // wordDisplay[i] !== "_";
+    //             }) {
+    //             // so run the winning function that plays song, photo, song title, and reset function
+    //             winning();
+    //         }
+    //     } else {
+    //         lettersGuessed.push(userGuess); // add the userGuess to the array of letters already guessed
+    //         write letters of lettersGuessed to# theGuesses div as individual spans;
+    //         guessesRemaining = guessesRemaining - 1; // decrement the amount of guessesRemaining
+    //         if (guessesRemaining < 1) { // and if the guessesRemaining hits 0,
+    //             reset(); // then run reset to start another game
+    //         } else {
+    //             // otherwise, if guessesRemaining is NOT 0, then do nothing
+    //         }
+    //     }
+    // }
+};
+
+// END OF FUNCTION EXPRESSIONS: reset, winning, play
+
+// END OF VARIABLES INITIALIZATIONS
 
 
 
 // START GAME PLAY TRIGGER FUNCTION
 
-// document.onkeyup = function (event) {
-//     userGuess = event.key.toUpperCase();
-//     play();
-// }
+// when any key is lifted up after being pressed, the event is passed in as (event)
+document.onkeyup = function (event) {
+
+    // the value of the key press, converted to ALL UPPER CASE, is assigned to userGuess String variable
+    userGuess = event.key.toUpperCase();
+
+    // ...and also the play() function is triggered, which runs the game's decision logic tree
+    play();
+
+};
+
+// END GAME PLAY TRIGGER FUNCTION
