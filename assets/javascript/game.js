@@ -89,11 +89,11 @@ let wordChoice = bandChoice.name;
 // get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
 // the Array used to compare right/wrong answers against for insertion into wordDisplay
 
-let wordDisplay = wordChoice.slice(); 
+let wordDisplay = wordChoice.slice();
 // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
 wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
 wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
-document.getElementById("theWord").textContent = (wordDisplay); // write wordDisplay to page SPAN
+document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
 // let wordDisplay = ["_ _ _ _ "];
 // used to display the current status of the guessed word on the page
 
@@ -130,8 +130,8 @@ document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DE
 // value is set in the DOCUMENT.KEYUP() function as event.key.toUpperCase()
 
 let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
-lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
-document.getElementById("theGuesses").textContent = (lettersGuessed); // DISPLAY FOR DEV ONLY
+// lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
+document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 // an Array, empty on page load and at reset()
 // used to keep track of each new (and not previously pressed) key value in userGuess
 
@@ -146,21 +146,36 @@ document.getElementById("theWins").textContent = (wins); // DISPLAY FOR DEV ONLY
 // START FUNCTION DEFINITIONS
 
 
-// resets the game either at end of winning(), or if guessesRemaining < 1
+// resets the game to a new random band either at end of winning(), or if guessesRemaining < 1
 let reset = function () {
 
-    //get a new random object from bandsArray
-    // bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
-    
-    //
-    // wordChoice = bandChoice.name;
+    // get a new random object from bandsArray
+    bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
-    // this.wordChoice(); //sets a new word (letter array) from bandsArray[bandChoice] object
-    // this.wordDisplay(); // resets the displayed word on screen as _ _ _ _ _
-    // this.guessesRemaining() = 12; //resets remaining guesses to 12
-    // this.lettersGuessed = []; //resets and empties the array of lettersGuessed
-    // getElementById("theGuesses").innerHTML(lettersGuessed); //write empty array to HTML
-    return;
+    // get a new wordChoice from the .name of randomly chosen bandChoice object
+    wordChoice = bandChoice.name;
+
+    // make wordDisplay a string of blanks "_ _ _" with blanks equal to letters in wordChoice
+    wordDisplay = wordChoice.slice();
+    // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
+    wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
+    wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
+    document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
+
+    // reassign the photo, mp3 and song name variables from the new random object
+    // these items are hidden until the winning() function reveals them
+    bandPhoto = bandChoice.photo;
+    bandMP3 = bandChoice.mp3;
+    bandSongName = bandChoice.song;
+
+    // reset the number of guessesRemaining to 12
+    guessesRemaining = 12;
+
+    // empties the array of lettersGuessed
+    lettersGuessed = [];
+    lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
+    document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
+
 };
 
 // shows band photo and song name, plays song, increases wins +1, and runs reset()
