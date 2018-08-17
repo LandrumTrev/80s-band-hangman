@@ -94,10 +94,13 @@
     wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
     document.getElementById("theWord").textContent = (wordDisplay); // write wordDisplay to page SPAN
     // let wordDisplay = ["_ _ _ _ "];
-    // used to display the current status of the guessed word in HTML
+    // used to display the current status of the guessed word on the page
 
-    // let guessesRemaining = 12;
-    // // used to keep track of how many guesses the user has left
+    let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
+    // used to keep track of how many guesses the user has left
+    guessesRemaining = 12; // initial value given to guessesRemaining on page load
+    document.getElementById("theRemaining").textContent = (guessesRemaining);
+    // write the value of guessesRemaining to the #theRemaining span on page
 
     // let userGuess = "a";
     // // initialize but leave empty.
