@@ -83,17 +83,18 @@ let bandsArray = [
 // randomly select an element (a band object) from bandsArray
 let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
-// set a variable for the chosen band's name
+// wordChoice is an Array with the letters of the band name
 let wordChoice = bandChoice.name;
 
 // use .slice to make an independent copy of wordChoice which will remain an array
+// wordArray here is an Array of letters that will become underscores of the band's name
 let wordArray = wordChoice.slice();
+
+// here is where wordArray becomes an Array filled with underscores
+wordArray = wordArray.fill("_");
 
 // use .slice to make wordDisplay which will be turned into a String
 let wordDisplay = wordArray.slice();
-
-// use .fill to replace all array elements (letters) with "_"
-wordDisplay = wordDisplay.fill("_");
 
 // use .join with space separator to turn array into a string
 wordDisplay = wordDisplay.join(" ");
@@ -146,17 +147,18 @@ let reset = function () {
     // randomly select an element (a band object) from bandsArray
     bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
-    // set a variable for the chosen band's name
+    // wordChoice is an Array with the letters of the band name
     wordChoice = bandChoice.name;
 
     // use .slice to make an independent copy of wordChoice which will remain an array
+    // wordArray here is an Array of letters that will become underscores of the band's name
     wordArray = wordChoice.slice();
+
+    // here is where wordArray becomes an Array filled with underscores
+    wordArray = wordArray.fill("_");
 
     // use .slice to make wordDisplay which will be turned into a String
     wordDisplay = wordArray.slice();
-
-    // use .fill to replace all array elements (letters) with "_"
-    wordDisplay = wordDisplay.fill("_");
 
     // use .join with space separator to turn array into a string
     wordDisplay = wordDisplay.join(" ");
@@ -220,32 +222,37 @@ let play = function () {
             // and then write updated wordDisplay String to the page
             document.getElementById("theWord").textContent = (wordDisplay);
 
-            if (wordArray.includes("_")) {
+            if (!wordDisplay.includes("_")) {
                 // duh, winning!
-                // winning();
-                return;
+                winning();
+                // return;
 
             } else {
                 // do nothing
-                // return;
-                winning();
-
+                return;
+                // winning();
             }
 
         } else {
 
-            // .push the unmatched userGuess onto the end of the lettersGuessed array
-            lettersGuessed.push(" " + userGuess);
-            // and write the new value of lettersGuessed to the page
-            document.getElementById("theGuesses").textContent = (lettersGuessed);
-            // and decrement the amount of guessesRemaining by 1
-            guessesRemaining = guessesRemaining - 1;
-            document.getElementById("theRemaining").textContent = (guessesRemaining); // write to page
+            if (!lettersGuessed.includes(" " + userGuess)) {
 
-            if (guessesRemaining < 1) {
-                // reset to a new game
-                reset();
+                // .push the unmatched userGuess onto the end of the lettersGuessed array
+                lettersGuessed.push(" " + userGuess);
+                // and write the new value of lettersGuessed to the page
+                document.getElementById("theGuesses").textContent = (lettersGuessed);
+                // and decrement the amount of guessesRemaining by 1
+                guessesRemaining = guessesRemaining - 1;
+                document.getElementById("theRemaining").textContent = (guessesRemaining); // write to page
 
+                if (guessesRemaining < 1) {
+                    // reset to a new game
+                    reset();
+
+                } else {
+                    // do nothing
+                    // return;
+                }
             } else {
                 // do nothing
                 // return;
@@ -279,7 +286,7 @@ document.onkeyup = function (event) {
 
     // DEV CODE
     console.log(userGuess);
-    document.getElementById("theGuess").innerHTML = (userGuess); // DISPLAY FOR DEV ONLY
+    // document.getElementById("theGuess").innerHTML = (userGuess); // DISPLAY FOR DEV ONLY
 
     // ...and also the play() function is triggered, which runs the game's decision logic tree
     play(event);

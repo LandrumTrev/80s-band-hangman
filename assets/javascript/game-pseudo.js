@@ -80,84 +80,60 @@ let bandsArray = [
 
 ];
 
-// randomly select a band object from bandsArray
+// randomly select an element (a band object) from bandsArray
 let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
-// let bandChoice = bandsArray[0]; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
-// choose a random element from bandsArray[], which is an object with name, photo, mp3, song
-// use to keep track of name, photo, mp3, and song name of current word
 
-// set a variable for the band's name to be guessed
+// wordChoice is an Array with the letters of the band name
 let wordChoice = bandChoice.name;
-// let wordChoice = ["A", "-", "H", "A"];  // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
-// get an Array of individual CAPITAL letters from .name of chosen bandsArray[bandChoice] object
-// the Array used to compare right/wrong answers against for insertion into wordDisplay
-// document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV; display in winning()
 
-
-//
-// set a variable to display blanks equal in number to letters in the band's name
-// this String's value to be updated by the play() function
-
-// use .slice to make wordArray, an independent Array copy of values in wordChoice
+// use .slice to make an independent copy of wordChoice which will remain an array
+// wordArray here is an Array of letters that will become underscores of the band's name
 let wordArray = wordChoice.slice();
 
-// then use .slice to make wordDisplay, an independent copy of wordArray that will be turned into a String
+// here is where wordArray becomes an Array filled with underscores
+wordArray = wordArray.fill("_");
+
+// use .slice to make wordDisplay which will be turned into a String
 let wordDisplay = wordArray.slice();
 
-wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
-wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
-document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
-// let wordDisplay = ["_ _ _ _ "];
-//
+// use .join with space separator to turn array into a string
+wordDisplay = wordDisplay.join(" ");
+
+// write the blanks to page SPAN
+document.getElementById("theWord").textContent = (wordDisplay);
 
 
 // set a variable for the band's photo to display on a win
-// let bandPhoto = bandChoice.photo;
-let bandPhoto; // initialize variable for band photo
-// let bandPhoto = "<img src='assets/images/hangman.jpg'>"; // initial placeholder image for game
-document.getElementById("thePhoto").innerHTML = (bandPhoto); // display the initial placeholder image
-// get photo from the .photo of the current bandsArray[bandChoice] object
+let bandPhoto = "<img src='assets/images/hangman.jpg'>"; // initial game image
+document.getElementById("thePhoto").innerHTML = (bandPhoto); // display the game image
 
 // set a variable for the band's song to play on a win
-let bandMP3; // initalize variable for the song to play
-// let bandMP3 = bandChoice.mp3;
-// let bandMP3 = "<audio controls autoplay src='assets/music/aha.mp3'></audio>";
-// document.getElementById("theMP3").innerHTML = (bandMP3); // FOR DEV; display in winning()
-// get audio file from the .mp3 of the current bandsArray[bandChoice] object
+let bandMP3 = bandChoice.mp3;
 
 // set a variable for the band's name and song title to display on a win
-// let bandSongName = bandChoice.song;
-let bandSongName; // initialize variable for display of band name and song name text
-// let bandSongName = "<strong><em>Guess the name of the '80s band I'm thinking of, and you'll get a blast from the past!</em></strong>";
-// document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
-// get text of song and band name from the .song of the current bandsArray[bandChoice] object
+// set an intro message instructions to display where the band and song title will appear
+let bandSongName = "<strong><em>Guess the name of the '80s band I'm thinking of, and you'll get a blast from the past!</em></strong>";
+document.getElementById("theSongName").innerHTML = (bandSongName); // display intro message
 
 // END OF RANDOM GAME OBJECT VARIABLES
 
 
 // START GAME PLAY VARIABLES
 
-// initialize a Number variable for the number of remaining guesses the user has
-let guessesRemaining; // declare guessesRemaining variable, value reset to 12 by reset()
-guessesRemaining = 12; // initial value given to guessesRemaining on page load
-// write the value of guessesRemaining to the #theRemaining span on page
+// set a variable to count number of remaining guesses
+let guessesRemaining = 12;
 document.getElementById("theRemaining").textContent = (guessesRemaining); // write to page
 
-// initialize a String variable to be assigned to each key press the user makes
-let userGuess; // initialize, set value in play() by DOCUMENT.ONKEYUP() {event.key.toUpperCase();}
-// userGuess = "a"; // PLACEHOLDER VALUE FOR DEV, REMOVE FOR PRODUCTION
-// value is set in the DOCUMENT.KEYUP() function as event.key.toUpperCase()
+// set a variable for the user's key press
+let userGuess; // used in play() by DOCUMENT.ONKEYUP() {event.key.toUpperCase();}
 
-// initialize an Array variable to hold a sequence of String values from userGuess
-let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
-// lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
-document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
-// an Array, empty on page load and at reset()
+// set an Array to hold the accumulated userGuess key press values
+let lettersGuessed = [];
+document.getElementById("theGuesses").textContent = (lettersGuessed); // write to page
 
-// initialize a Number variable as a incremented counter to keep track of user wins
-let wins = 0; // initialize, value incremented in the winning() function
-// wins = 327; // PLACEHOLDER VALUE FOR DEV ONLY, REMOVE FOR PRODUCTION
-document.getElementById("theWins").textContent = (wins); // write the value of wins to the page
+// set a variable to keep track of user wins
+let wins = 0;
+document.getElementById("theWins").textContent = (wins); // write to page
 
 // END OF GAME PLAY VARIABLES
 
@@ -166,78 +142,44 @@ document.getElementById("theWins").textContent = (wins); // write the value of w
 
 
 // resets the game to a new random band either at end of winning(), or if guessesRemaining < 1
-let pageLoad = function () {
-
-    // get a new random object from bandsArray
-    bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
-
-    // get a new wordChoice Array from the .name of randomly chosen bandChoice object
-    wordChoice = bandChoice.name;
-
-    // make wordDisplay a String of blanks "_ _ _" with blanks equal to letters in wordChoice Array
-    // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
-    wordDisplay = wordChoice.slice();
-    wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
-    wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
-    document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
-
-    // reassign the photo, mp3 and song name variables from the new random object
-    // these items are hidden until the winning() function writes them to the page
-    bandPhoto = "<img src='assets/images/hangman.jpg'>"; // initial placeholder image for game
-    bandMP3 = bandChoice.mp3;
-    bandSongName = "<strong><em>Guess the name of the '80s band I'm thinking of, and you'll get a blast from the past!</em></strong>";
-
-
-    // display the initial placeholders for the image and bandSongName text area
-    document.getElementById("thePhoto").innerHTML = (bandPhoto); // display the initial placeholder image
-    document.getElementById("theSongName").innerHTML = (bandSongName); // FOR DEV; display in winning()
-
-
-    // reset the number of guessesRemaining to 12
-    guessesRemaining = 12;
-
-    // empties the array of lettersGuessed
-    lettersGuessed = [];
-    // lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
-    document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
-
-    document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
-
-
-};
-
-
-// resets the game to a new random band either at end of winning(), or if guessesRemaining < 1
 let reset = function () {
 
-    // get a new random object from bandsArray
+    // randomly select an element (a band object) from bandsArray
     bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
-    // get a new wordChoice Array from the .name of randomly chosen bandChoice object
+    // wordChoice is an Array with the letters of the band name
     wordChoice = bandChoice.name;
 
-    // make wordDisplay a String of blanks "_ _ _" with blanks equal to letters in wordChoice Array
-    // use .slice to copy wordChoice values to wordDisplay without affecting wordChoice values later
-    wordDisplay = wordChoice.slice();
-    wordDisplay = wordDisplay.fill("_"); // use .fill to replace all array elements (letters) with "_"
-    wordDisplay = wordDisplay.join(" "); // use .join with space separator to turn array into a string
-    document.getElementById("theWord").textContent = (wordDisplay); // write the blanks to page SPAN
+    // use .slice to make an independent copy of wordChoice which will remain an array
+    // wordArray here is an Array of letters that will become underscores of the band's name
+    wordArray = wordChoice.slice();
 
-    // reassign the photo, mp3 and song name variables from the new random object
-    // these items are hidden until the winning() function writes them to the page
-    // bandPhoto = bandChoice.photo;
-    // bandMP3 = bandChoice.mp3;
-    // bandSongName = bandChoice.song;
+    // here is where wordArray becomes an Array filled with underscores
+    wordArray = wordArray.fill("_");
+
+    // use .slice to make wordDisplay which will be turned into a String
+    wordDisplay = wordArray.slice();
+
+    // use .join with space separator to turn array into a string
+    wordDisplay = wordDisplay.join(" ");
+
+    // write the blanks to page SPAN
+    document.getElementById("theWord").textContent = (wordDisplay);
+
+
+    // reset hidden band objects to be revealed by winning()
+    bandPhoto = bandChoice.photo;
+    bandMP3 = bandChoice.mp3;
+    bandSongName = bandChoice.song;
 
     // reset the number of guessesRemaining to 12
     guessesRemaining = 12;
 
     // empties the array of lettersGuessed
     lettersGuessed = [];
-    // lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
-    document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
+    document.getElementById("theGuesses").textContent = (lettersGuessed); // write to page
 
-    // document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
+    document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
 
 
 };
@@ -280,31 +222,37 @@ let play = function () {
             // and then write updated wordDisplay String to the page
             document.getElementById("theWord").textContent = (wordDisplay);
 
-            if (wordArray.includes("_")) {
+            if (!wordDisplay.includes("_")) {
                 // duh, winning!
-                // winning();
-                return;
+                winning();
+                // return;
 
             } else {
                 // do nothing
-                // return;
-                winning();
-
+                return;
+                // winning();
             }
 
         } else {
 
-            // .push the unmatched userGuess onto the end of the lettersGuessed array
-            lettersGuessed.push(" " + userGuess);
-            // and write the new value of lettersGuessed to the page
-            document.getElementById("theGuesses").textContent = (lettersGuessed);
-            // and decrement the amount of guessesRemaining by 1
-            guessesRemaining = guessesRemaining - 1;
+            if (!lettersGuessed.includes(" " + userGuess)) {
 
-            if (guessesRemaining < 1) {
-                // reset to a new game
-                reset();
+                // .push the unmatched userGuess onto the end of the lettersGuessed array
+                lettersGuessed.push(" " + userGuess);
+                // and write the new value of lettersGuessed to the page
+                document.getElementById("theGuesses").textContent = (lettersGuessed);
+                // and decrement the amount of guessesRemaining by 1
+                guessesRemaining = guessesRemaining - 1;
+                document.getElementById("theRemaining").textContent = (guessesRemaining); // write to page
 
+                if (guessesRemaining < 1) {
+                    // reset to a new game
+                    reset();
+
+                } else {
+                    // do nothing
+                    // return;
+                }
             } else {
                 // do nothing
                 // return;
@@ -312,7 +260,7 @@ let play = function () {
         }
     } else {
         // do nothing
-        // return;
+        return;
     }
 };
 
@@ -328,7 +276,7 @@ let play = function () {
 // START GAME PLAY TRIGGER FUNCTION
 
 // call reset on page load
-pageLoad();
+reset();
 
 // when any key is lifted up after being pressed, the event is passed in as (event)
 document.onkeyup = function (event) {
@@ -338,7 +286,7 @@ document.onkeyup = function (event) {
 
     // DEV CODE
     console.log(userGuess);
-    document.getElementById("theGuess").innerHTML = (userGuess); // DISPLAY FOR DEV ONLY
+    // document.getElementById("theGuess").innerHTML = (userGuess); // DISPLAY FOR DEV ONLY
 
     // ...and also the play() function is triggered, which runs the game's decision logic tree
     play(event);
