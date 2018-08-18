@@ -9,7 +9,7 @@ main {
     position: relative;
     margin: 0 auto;
     max-width: 400px;
-    top: 100px;
+    top: 0px;
     padding: 100px;
     background-color: aliceblue;
 }
@@ -18,8 +18,8 @@ main {
     position: relative;
     margin: 0 auto;
     max-width: 400px;
-    top: 0px;
-    padding: 50px 100px 100px 100px;
+    top: -100px;
+    padding: 0px 100px 100px 100px;
     background-color: aliceblue;
 }
 
