@@ -185,7 +185,7 @@ let reset = function () {
     lettersGuessed = [];
     document.getElementById("theGuesses").textContent = (lettersGuessed); // write to page
 
-    document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
+    // document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
 
 
 };
