@@ -225,58 +225,58 @@ let play = function () {
             return;
 
             // but if userGuess letter pressed is not already in the lettersGuessed Array...
+        } else if
+
+        // loop through all elements in the secret wordChoice Array,
+        for (let h = 0; 0 < wordChoice.length; h++) {
+
+        // and if the user's key press matches any element in the wordChoice Array,
+        (wordChoice[h] === userGuess) {
+
+            // then .splice in 1 element (userGuess) into wordArray at position [h]
+            wordArray.splice([h], 1, userGuess);
+            // and then copy wordArray values into independent wordDisplay Array
+            wordDisplay = wordArray.slice();
+            // and then convert the wordDisplay Array into a space-separated String
+            wordDisplay = wordDisplay.join(" ");
+            // and then write updated wordDisplay String to the page
+            document.getElementById("theWord").textContent = (wordDisplay);
+
+            // and also, loop through the wordArray representing current state of guesses
+            for (let g = 0; 0 < wordArray.length; g++) {
+
+                // and if there are no any underscore "_" characters left...
+                if (wordArray[g] !== "_") {
+
+                    // ...then run winning() to play song, show photo + song title, and reset()
+                    winning();
+                }
+            }
         } else {
 
-            // loop through all elements in the secret wordChoice Array,
-            for (let h = 0; 0 < wordChoice.length; h++) {
+            // .push the unmatched userGuess onto the end of the lettersGuessed array
+            lettersGuessed.push(userGuess);
 
-                // and if the user's key press matches any element in the wordChoice Array,
-                if (wordChoice[h] === userGuess) {
+            // and write the new value of lettersGuessed to the page
+            document.getElementById("theGuesses").textContent = (lettersGuessed);
 
-                    // then .splice in 1 element (userGuess) into wordArray at position [h]
-                    wordArray.splice([h], 1, userGuess);
+            // and decrement the amount of guessesRemaining by 1
+            guessesRemaining = guessesRemaining - 1;
 
-                    // and then copy wordArray values into independent wordDisplay Array
-                    wordDisplay = wordArray.slice();
-                    // and then convert the wordDisplay Array into a space-separated String
-                    wordDisplay = wordDisplay.join(" ");
-                    // and then write updated wordDisplay String to the page
-                    document.getElementById("theWord").textContent = (wordDisplay);
+            // and if the number of guessesRemaining is 0...
+            if (guessesRemaining < 1) {
 
-                    // and loop through the wordArray representing current state of guesses
-                    for (let g = 0; 0 < wordArray.length; g++) {
+                // then run reset() to reset the game to a new random object
+                reset();
+            } else {
 
-                        // and if there are no any underscore "_" characters left...
-                        if ( wordArray[g] !== "_";) {
-
-                        // ...then run winning() to play song, show photo + song title, and reset()
-                        winning();
-                    }
-
-
-                }
-
-
-
-
-            };
+                // do nothing and pop out
+                return;
+            }
         }
-    };
-
-
-
-    //     } else {
-    //         lettersGuessed.push(userGuess); // add the userGuess to the array of letters already guessed
-    //         write letters of lettersGuessed to# theGuesses div as individual spans;
-    //         guessesRemaining = guessesRemaining - 1; // decrement the amount of guessesRemaining
-    //         if (guessesRemaining < 1) { // and if the guessesRemaining hits 0,
-    //             reset(); // then run reset to start another game
-    //         } else {
-    //             // otherwise, if guessesRemaining is NOT 0, then do nothing
-    //         }
-    //     }
-    // }
+    }
 };
+
 
 // END OF FUNCTION EXPRESSIONS: reset, winning, play
 
