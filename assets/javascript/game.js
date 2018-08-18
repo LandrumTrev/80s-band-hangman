@@ -148,7 +148,7 @@ document.getElementById("theGuess").textContent = (userGuess); // DISPLAY FOR DE
 
 // initialize an Array variable to hold a sequence of String values from userGuess
 let lettersGuessed = []; // initialize, values of userGuess added to this array in play()
-lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
+// lettersGuessed = [" C", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
 document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 // an Array, empty on page load and at reset()
 
@@ -193,6 +193,9 @@ let reset = function () {
     // lettersGuessed = [" B", " H", " K", " Q"]; // PLACEHOLDER VALUES FOR DEV ONLY, REMOVE FOR PRODUCTION
     document.getElementById("theGuesses").textContent = (lettersGuessed); // write blank array to page
 
+    document.getElementById("theBand").innerHTML = (wordChoice); // FOR DEV ONLY, REMOVE
+
+
 };
 
 // shows band photo and song name, plays song, increases wins +1, and runs reset()
@@ -215,66 +218,60 @@ let winning = function () {
 // the meat and potatoes of the logic tree that occurs when DOCUMENT.ONKEYUP fires
 let play = function () {
 
-    // create a loop that runs the length of lettersGuessed
     for (let i = 0; 0 < lettersGuessed.length; i++) {
 
-        // if userGuess equals any letter in lettersGuessed array...
-        if (userGuess === lettersGuessed[i]) {
+        if (userGuess !== lettersGuessed[i]) {
 
-            // then do nothing--end the function with return
-            return;
+            for (let h = 0; 0 < wordChoice.length; h++) {
 
-            // but if userGuess letter pressed is not already in the lettersGuessed Array...
-        } else if
+                if (userGuess !== wordChoice[h]) {
 
-        // loop through all elements in the secret wordChoice Array,
-        for (let h = 0; 0 < wordChoice.length; h++) {
+                    // then .splice in 1 element (userGuess) into wordArray at position [h]
+                    wordArray.splice([h], 1, userGuess);
+                    // and then copy wordArray values into independent wordDisplay Array
+                    wordDisplay = wordArray.slice();
+                    // and then convert the wordDisplay Array into a space-separated String
+                    wordDisplay = wordDisplay.join(" ");
+                    // and then write updated wordDisplay String to the page
+                    document.getElementById("theWord").textContent = (wordDisplay);
 
-        // and if the user's key press matches any element in the wordChoice Array,
-        (wordChoice[h] === userGuess) {
+                    for (let g = 0; 0 < wordArray.length; g++) {
 
-            // then .splice in 1 element (userGuess) into wordArray at position [h]
-            wordArray.splice([h], 1, userGuess);
-            // and then copy wordArray values into independent wordDisplay Array
-            wordDisplay = wordArray.slice();
-            // and then convert the wordDisplay Array into a space-separated String
-            wordDisplay = wordDisplay.join(" ");
-            // and then write updated wordDisplay String to the page
-            document.getElementById("theWord").textContent = (wordDisplay);
+                        if (wordArray[g] !== "_") {
+                            // duh, winning!
+                            winning();
+                        } else {
+                            // do nothing
+                            return;
+                        }
+                    }
 
-            // and also, loop through the wordArray representing current state of guesses
-            for (let g = 0; 0 < wordArray.length; g++) {
+                } else {
 
-                // and if there are no any underscore "_" characters left...
-                if (wordArray[g] !== "_") {
+                    // .push the unmatched userGuess onto the end of the lettersGuessed array
+                    lettersGuessed.push(userGuess);
+                    // and write the new value of lettersGuessed to the page
+                    document.getElementById("theGuesses").textContent = (lettersGuessed);
+                    // and decrement the amount of guessesRemaining by 1
+                    guessesRemaining = guessesRemaining - 1;
 
-                    // ...then run winning() to play song, show photo + song title, and reset()
-                    winning();
+                    if (guessesRemaining < 1) {
+                        // reset to a new game
+                        reset();
+
+                    } else {
+                        // do nothing
+                        return;
+                    }
                 }
             }
         } else {
-
-            // .push the unmatched userGuess onto the end of the lettersGuessed array
-            lettersGuessed.push(userGuess);
-
-            // and write the new value of lettersGuessed to the page
-            document.getElementById("theGuesses").textContent = (lettersGuessed);
-
-            // and decrement the amount of guessesRemaining by 1
-            guessesRemaining = guessesRemaining - 1;
-
-            // and if the number of guessesRemaining is 0...
-            if (guessesRemaining < 1) {
-
-                // then run reset() to reset the game to a new random object
-                reset();
-            } else {
-
-                // do nothing and pop out
-                return;
-            }
+            // do nothing
+            return;
         }
     }
+
+
 };
 
 
