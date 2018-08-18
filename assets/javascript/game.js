@@ -217,23 +217,58 @@ let play = function () {
         // and if userGuess IS included in the secret wordChoice band name Array
         if (wordChoice.includes(userGuess)) {
 
-            
-            let itemFunc = function () {
+            for (let i = 0; i < wordChoice.length; i++) {
 
-                // then find the index number of the letter matching userGuess,
-                wordSplice = wordChoice.indexOf(userGuess);
-                // and .splice in userGuess into wordArray at the wordSplice index
-                wordArray.splice(wordSplice, 1, userGuess);
-                // and then copy wordArray values into independent wordDisplay Array
-                wordDisplay = wordArray.slice();
-                // and then convert the wordDisplay Array into a space-separated String
-                wordDisplay = wordDisplay.join(" ");
-                // and then write updated wordDisplay String to the page
-                document.getElementById("theWord").textContent = (wordDisplay);
+                if (wordChoice[i] === userGuess) {
 
+                    // let item = wordChoice[i];
+
+                    let itemFunc = function () {
+                        
+                        // then find the index number of the letter matching userGuess,
+                        wordSplice = wordChoice.indexOf(userGuess);
+                        // and .splice in userGuess into wordArray at the wordSplice index
+                        wordArray.splice(wordSplice, 1, userGuess);
+                        // and then copy wordArray values into independent wordDisplay Array
+                        wordDisplay = wordArray;
+                        // wordDisplay = wordArray.slice();
+                        // and then convert the wordDisplay Array into a space-separated String
+                        wordDisplay = wordDisplay.join(" ");
+                        // and then write updated wordDisplay String to the page
+                        document.getElementById("theWord").textContent = (wordDisplay);
+
+                    }
+
+                    itemFunc(wordChoice[i]);
+
+                }
             }
 
-            wordChoice.forEach(itemFunc);
+            // for (let i = 0; i < wordChoice.length; i++) {
+
+            //     if (wordChoice[i] === userGuess) {
+
+            //         let item = wordChoice[i];
+
+            //         let itemFunc = function () {
+
+            //             // then find the index number of the letter matching userGuess,
+            //             wordSplice = wordChoice.indexOf(userGuess);
+            //             // and .splice in userGuess into wordArray at the wordSplice index
+            //             wordArray.splice(wordSplice, 1, userGuess);
+            //             // and then copy wordArray values into independent wordDisplay Array
+            //             wordDisplay = wordArray.slice();
+            //             // and then convert the wordDisplay Array into a space-separated String
+            //             wordDisplay = wordDisplay.join(" ");
+            //             // and then write updated wordDisplay String to the page
+            //             document.getElementById("theWord").textContent = (wordDisplay);
+
+            //         }
+
+            //         itemFunc(item);
+
+            //     } 
+            // }
 
 
             if (!wordDisplay.includes("_")) {
