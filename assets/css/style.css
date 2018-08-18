@@ -10,7 +10,7 @@ main {
     margin: 0 auto;
     max-width: 400px;
     top: 0px;
-    padding: 100px;
+    padding: 30px 100px 100px 100px;
     background-color: aliceblue;
 }
 
@@ -19,7 +19,7 @@ main {
     margin: 0 auto;
     max-width: 400px;
     top: -100px;
-    padding: 0px 100px 100px 100px;
+    padding: 0px 100px 50px 100px;
     background-color: aliceblue;
 }
 
