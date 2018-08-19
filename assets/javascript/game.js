@@ -89,6 +89,9 @@ let dups;
 // randomly select an element (a band object) from bandsArray
 let bandChoice = bandsArray[Math.floor(Math.random() * bandsArray.length)];
 
+
+
+
 // wordChoice is an Array with the letters of the band name
 let wordChoice = bandChoice.name;
 
@@ -107,6 +110,8 @@ wordDisplay = wordDisplay.join(" ");
 
 // write the blanks to page SPAN
 document.getElementById("theWord").textContent = (wordDisplay);
+
+
 
 
 // set a variable for the band's photo to display on a win
@@ -217,59 +222,27 @@ let play = function () {
         // and if userGuess IS included in the secret wordChoice band name Array
         if (wordChoice.includes(userGuess)) {
 
+            // then loop through all items in the wordChoice array of letters,
             for (let i = 0; i < wordChoice.length; i++) {
 
+                // and IF a character in position [i] in wordChoice matches the userGuess character
                 if (wordChoice[i] === userGuess) {
 
-                    // let item = wordChoice[i];
+                    // then change the underscore in position [i] in the wordArray of blanks to the userGuess character
+                    // this uses String.replace() to replace the String value of "_" to "A" in the wordArray element
+                    wordArray[i] = wordArray[i].replace(/_/g, userGuess);
 
-                    let itemFunc = function () {
-                        
-                        // then find the index number of the letter matching userGuess,
-                        wordSplice = wordChoice.indexOf(userGuess);
-                        // and .splice in userGuess into wordArray at the wordSplice index
-                        wordArray.splice(wordSplice, 1, userGuess);
-                        // and then copy wordArray values into independent wordDisplay Array
-                        wordDisplay = wordArray;
-                        // wordDisplay = wordArray.slice();
-                        // and then convert the wordDisplay Array into a space-separated String
-                        wordDisplay = wordDisplay.join(" ");
-                        // and then write updated wordDisplay String to the page
-                        document.getElementById("theWord").textContent = (wordDisplay);
+                    // and then copy wordArray values into independent wordDisplay Array
+                    wordDisplay = wordArray.slice();
 
-                    }
+                    // and then convert the wordDisplay Array into a space-separated String
+                    wordDisplay = wordDisplay.join(" ");
 
-                    itemFunc(wordChoice[i]);
+                    // and then write updated wordDisplay String to the page
+                    document.getElementById("theWord").textContent = (wordDisplay);
 
                 }
             }
-
-            // for (let i = 0; i < wordChoice.length; i++) {
-
-            //     if (wordChoice[i] === userGuess) {
-
-            //         let item = wordChoice[i];
-
-            //         let itemFunc = function () {
-
-            //             // then find the index number of the letter matching userGuess,
-            //             wordSplice = wordChoice.indexOf(userGuess);
-            //             // and .splice in userGuess into wordArray at the wordSplice index
-            //             wordArray.splice(wordSplice, 1, userGuess);
-            //             // and then copy wordArray values into independent wordDisplay Array
-            //             wordDisplay = wordArray.slice();
-            //             // and then convert the wordDisplay Array into a space-separated String
-            //             wordDisplay = wordDisplay.join(" ");
-            //             // and then write updated wordDisplay String to the page
-            //             document.getElementById("theWord").textContent = (wordDisplay);
-
-            //         }
-
-            //         itemFunc(item);
-
-            //     } 
-            // }
-
 
             if (!wordDisplay.includes("_")) {
                 // duh, winning!
@@ -343,39 +316,3 @@ document.onkeyup = function (event) {
 };
 
 // END GAME PLAY TRIGGER FUNCTION
-
-
-
-
-
-
-
-
-
-
-
-// for (let i = 0; i < wordChoice.length; i++) {
-
-//     if (wordChoice[i] === userGuess) {
-
-//         let item = wordChoice[i];
-
-//         let itemFunc = function () {
-
-//             // then find the index number of the letter matching userGuess,
-//             wordSplice = wordChoice.indexOf(userGuess);
-//             // and .splice in userGuess into wordArray at the wordSplice index
-//             wordArray.splice(wordSplice, 1, userGuess);
-//             // and then copy wordArray values into independent wordDisplay Array
-//             wordDisplay = wordArray.slice();
-//             // and then convert the wordDisplay Array into a space-separated String
-//             wordDisplay = wordDisplay.join(" ");
-//             // and then write updated wordDisplay String to the page
-//             document.getElementById("theWord").textContent = (wordDisplay);
-
-//         }
-
-//         itemFunc(item);
-
-//     } 
-// }
