@@ -3,7 +3,7 @@
 
 JavaScript, CSS, HTML, audio events, GitHub. App takes keyboard input for letter guesses, counts letters guessed, and plays song on each win.
 
-A hangman-style letter and word guess game themed with the names of 80s bands. 
+My second JavaScript application (August 2018). A hangman-style letter and word guess game themed with the names of 80s bands. 
 
 The game takes keyboard input of letters guessed and displays correct letter guesses in the Current Word field of blanks, and incorrect letters guessed in the Your guesses so far: field. Game does not count guesses of either correct or incorrect letters already guessed.
 
